@@ -1,4 +1,19 @@
 <script setup>
+/** Import Library */
+  import { onMounted } from 'vue';
+  import { useTodoStore } from './stores/todo';
+
+/** Instances and variables */
+  const todoStore  = useTodoStore();
+
+/** Methods */
+
+
+/** Hooks, Computed, Watcher */
+  onMounted(() =>{
+    todoStore.getAllTodos();
+  })
+
 </script>
 
 <template>
@@ -31,8 +46,10 @@
             <h4 class="text-danger">Tasks</h4>
             
             <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                List Item
+              <li v-for="todo in todoStore.todos" :key="todo.id" class="list-group-item d-flex justify-content-between align-items-center">
+                <span :class="todo.completed ? 'text-decoration-line-through':''">
+                  {{ todo.title }}
+                </span>
                 <a href="" class="btn ">
                   <i class="fa-solid fa-xmark"></i>
                 </a>
