@@ -29,11 +29,11 @@
               <form action="">
                 <div class="col-md-12">
                   <label for="" class="form-label">Add New Task</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" v-model="todoStore.todoForm.title">
                 </div>
 
                 <div class="mt-3">
-                  <input type="button" name="" id="" class="btn btn-success" value="Add Task">
+                  <input type="button" name="" id="" class="btn btn-success" value="Add Task" @click.prevent="todoStore.createTodo">
                 </div>
 
                 
@@ -47,9 +47,14 @@
             
             <ul class="list-group">
               <li v-for="todo in todoStore.todos" :key="todo.id" class="list-group-item d-flex justify-content-between align-items-center">
-                <span :class="todo.completed ? 'text-decoration-line-through':''">
-                  {{ todo.title }}
-                </span>
+                
+                <div class="">
+                  <input type="checkbox" class="form-check-input me-2">
+                  <span :class="todo.completed ? 'text-decoration-line-through':''">
+                    {{ todo.title }}
+                  </span>
+                </div>
+                
                 <a href="" class="btn ">
                   <i class="fa-solid fa-xmark"></i>
                 </a>
